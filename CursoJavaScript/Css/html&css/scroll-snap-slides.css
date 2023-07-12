@@ -1,0 +1,100 @@
+html{
+    font-size: 16px;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    
+}
+*,
+*::before,
+*::after{
+    box-sizing: inherit;
+}
+
+body{
+    margin: 0;
+}
+
+.slides{
+    width: 100%;
+    height: 100vh;
+    /*para que funcione nuestro scoll snap type*/
+    overflow-y: scroll;
+    /*scroll-snap-type: [x | y | inline block | both][mandatory][proximity];
+    inline = horizontal(x)
+    block = vertical(y)
+    mandatory: basta con un moviemito del cursos iremos a otra seccion
+    proximity sera la seccion mas aproximada*/
+    scroll-snap-type: none;/*default*/
+    scroll-snap-type: block mandatory;
+}
+.slide{
+    width: 100%;
+    height: inherit;
+    background-color: #1e2345;
+
+    scroll-snap-align: end;
+    scroll-snap-align: start;
+    scroll-snap-align: center;
+}
+.slide:nth-child(even){
+    background-color: #108eb4;
+}
+.slide:nth-child(2){
+    height: auto;
+}
+
+.slide-container{
+    width: 80%;
+    height: inherit;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vw;
+    color: #fff;
+
+}
+
+.carousel{
+    border: thick solid #d938f0;
+    display: flex;
+    width: 50%;
+    height: 50vh;
+    /*overflow-x: hidden;*/ 
+
+}
+
+.carousel-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 100%);
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: inline mandatory;
+}
+
+.carousel-slide{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #108eb4;
+    scroll-snap-align: center;
+}
+
+.carousel-slide:nth-child(even){
+    background-color: #1e2345;
+}
+
+.gradient-text{
+    background-image: linear-gradient(45deg, magenta, yellow);
+    -ms-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -ms-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}

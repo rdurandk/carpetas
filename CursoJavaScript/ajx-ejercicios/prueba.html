@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+    <style>
+        .form{
+            margin: 5rem auto; 
+            font-size: 20px;
+            width: 80%;
+            border: thin solid red;
+        }
+        .form >*{
+            display: block;
+            margin: 0.5rem auto;
+            width: 80%;
+        }
+        .boton{
+            display: block;
+            width: 30%;
+            cursor: pointer;
+        }
+        .user:hover{
+            border: medium solid #b6d3d3;
+        }
+        .user:target{
+            border: medium solid #b6d3d3;
+        }
+        
+    </style>
+</head>
+<body>
+    <form class="form" id="formulario">
+        <label class="label" for="username">Nombre</label>
+        <input type="text"  class="user" name="username">
+        <br>
+        <input type="file" name="file" id="file">
+        <br>
+        <button class="boton">Enviar</button>
+        <div >
+            <p id="username"></p>
+            <img src="" alt="" id="image">
+        </div>
+    </form>
+    <script>
+        const d = document;
+        const $form = d.querySelector("#formulario");
+        
+        function renderizadoTexto(formData){
+            const $Div_username = d.querySelector("#username");
+            const username = formData.get("username");
+            $Div_username.textContent = username;
+        }
+        function renderizadoArchivo(formData){
+            const $img = d.querySelector("#image");
+            const file = formData.get("file");
+            const archivo = URL.createObjectURL(file);
+            $img.setAttribute("src", archivo);
+        }
+        $form.addEventListener("submit", e =>{
+            e.preventDefault();
+            const formData = new FormData(e.currentTarget);
+            renderizadoTexto(formData);
+            renderizadoArchivo(formData);
+            
+            //debugger;
+        })
+    </script>
+</body>
+</html>

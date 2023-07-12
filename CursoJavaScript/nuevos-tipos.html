@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+    
+</head>
+<body>
+    <h1>Nuevos Tipos de Datos en JavaScript</h1>
+    <script>
+        let id = Symbol("id");
+        let id2 = Symbol("id2");
+
+        console.log(id === id2);
+        console.log(id, id2);
+        console.log(typeof id, typeof id2);
+
+        const NOMBRE = Symbol("nombre");
+        const SALUDAR = Symbol("saludar");
+
+        const persona = {
+            [NOMBRE]: "Alex"
+        }
+        console.log(persona);
+        persona.NOMBRE = "Alexander Durand"
+        console.log(persona);
+        console.log(persona.NOMBRE);
+        console.log(persona[NOMBRE]);
+
+        persona[SALUDAR] = function(){
+            console.log(`Hola`);
+            
+        }
+        console.log(persona);
+        persona[SALUDAR]();
+        
+        for(let propiedad in persona){
+            console.log(propiedad);
+            console.log(persona[propiedad]);
+        }
+        console.log(Object.getOwnPropertySymbols(persona));
+
+        console.log("=========Clase SET==============")
+        const set = new Set ([1,2,2,3,3,4,5,5, true, false, false, {},{},"HOLA", "hola"]);
+        console.info(set);
+        console.info(set.size);
+
+        const set2 = new Set();
+        set2.add(1);
+        set2.add(2);
+        set2.add(2);
+        set2.add(3);
+        set2.add(true);
+        set2.add(false);
+        set2.add(true);
+        set2.add({});
+        
+        console.log(set2);
+
+        console.log("Elementos de set");
+        for (const item of set) {
+            console.log(item);
+        }
+        console.log("Elementos de set 2");
+        set2.forEach(item => console.log (item));
+
+        let arr = Array.from(set);
+
+        console.log(arr[0]);
+        console.log(arr[9]);
+        console.log(arr[10]);
+        set.delete("HOLA")
+
+        console.log(set);
+
+        console.log(set.has("hola"));
+        console.log(set.has("HOLA"));
+
+        
+        //para limpiar  un set
+        //set2.clear();
+
+        console.log("==========CLASE MAP=========")
+        let mapa = new Map();
+        mapa.set("nombre", "Alex");
+        mapa.set("apellido", "Durand");
+        mapa.set("edad", "24");
+
+        console.log(mapa);
+        console.log(mapa.has("nombre"));
+        console.log(mapa.get("edad"));
+        //con set agregaremos o actualizaremos
+        mapa.set("nombre", "Alexander Durand");
+        console.log(mapa.get("nombre"));
+        
+        for (let [key, value] of mapa) {
+            console.log(`Llave: ${key}, Valor: ${value}`);
+        }
+
+        const mapa2 = new Map([
+            ["nombre", "Kenai"],
+            ["edad", 7],
+            ["animal", "perro"],
+            [null, "nulo"]
+        ]);
+
+        console.log(mapa2);
+
+        const llaves = [...mapa2.keys()];
+        const valores = [...mapa2.values()];
+
+        console.log(llaves);
+        console.log(valores);
+
+        console.log("========CLASE WEAKSETS Y WEAKMAPS========")
+        const ws = new WeakSet();
+
+        let valor1 = {"valor1": 1};
+        let valor2 = {"valor2": 2};
+        let valor3 = {"valor3": 3};
+
+        ws.add(valor1);
+        ws.add(valor2);
+        ws.add(valor3);
+
+        console.log(ws);
+        console.log(ws.has(valor1));
+        console.log(ws.has(valor3));
+
+        ws.delete(valor2);
+        console.log(ws);
+
+        ws.add(valor2);
+        ws.add(valor3);
+        console.log(ws);
+        /*
+        setInterval(() => console.log(ws), 1000);
+        setTimeout(() =>{
+            valor1 = null;
+            valor2 = null;
+            valor3 = null;
+        }, 5000) 
+
+        */
+        const wm = new WeakMap();
+
+        let llave1 ={}
+        let llave2 ={}
+        let llave3 ={}
+
+        wm.set(llave1,1);
+        wm.set(llave2,2);
+        console.log(wm);
+
+        console.log(wm.has(llave1));
+        console.log(wm.has(llave3));
+
+        console.log(wm.get(llave1));
+        console.log(wm.get(llave2));
+        console.log(wm.get(llave3));
+
+        wm.delete(llave2);
+        console.log(wm);
+
+        wm.set(llave2,2);
+        wm.set(llave3,3);
+        console.log(wm);
+
+        console.log("======CLASE ITERATOR=====");
+        const iterable = [1,2,3,4,5];
+        //Accedemos al iterator del iterable
+        const iterator = iterable[Symbol.iterator]();
+
+        console.log(iterable)
+        console.log(iterator);
+        /*
+        console.log(iterator.next());   
+        console.log(iterator.next()); 
+        console.log(iterator.next()); 
+        console.log(iterator.next()); 
+        console.log(iterator.next()); 
+        console.log(iterator.next()); 
+        */
+       let next = iterator.next();
+
+       while(!next.done){
+           console.log(next.value);
+           next = iterator.next();
+       }
+
+       console.log("=======CLASE GENERATORS=======")
+       //function* iterar una funcion
+       function* iterable1() {
+           yield "hola";
+           console.log("Hola Consola");
+           yield "hola 2";
+           console.log("Seguimos con mas instrucciones de nuestro codigo");
+           yield "hola 3";
+           yield "hola 4";
+       }
+       let iterator1 = iterable1();
+       /*
+       console.log(iterator1.next());
+       console.log(iterator1.next());
+       console.log(iterator1.next());
+       console.log(iterator1.next());
+       console.log(iterator1.next());
+       */
+
+       for(let y of iterator1){
+           console.log(y);
+       }
+       let arr1 = [...iterable1()];
+       console.log(arr1);
+
+       function cuadrado(valor){
+           setTimeout(() =>{
+               console.log({valor, resultado: valor*valor})
+           }, Math.random()*1000);
+
+           
+       }
+
+       /*
+       function* generador(){
+           console.log("Inicia Generator");
+           yield cuadrado(0);
+           yield cuadrado(1);
+           yield cuadrado(2);
+           yield cuadrado(3);
+           yield cuadrado(4);
+           yield cuadrado(5);
+           console.log("Termina Generator");
+        
+        
+       }
+       let gen = generador();
+       for (let y of gen) {
+           console.log(y);
+       }
+       */
+       console.log("=====CLASE PROXIES======");
+       const persona1 = {
+           nombre: "",
+           apellido: "",
+           edad: 0
+
+       }
+       const manejador ={
+           set(obj,prop,valor){
+               if(Object.keys(obj).indexOf(prop) ===-1){
+                return console.error(`La propiedad: ${prop} no existe`);
+               }
+               if(
+                (prop === "nombre" || prop === "apellido")&&
+                !(/^[a-zA-Z\s]+$/g.test(valor)) 
+                 
+               ){
+                return console.error(`La propiedad ${prop} Solo se aceptan letras y espacios en blanco`);
+               }
+
+            obj[prop] = valor;
+           }
+       }
+       const alex = new Proxy(persona1,manejador);
+
+       alex.nombre = "Alex",
+       alex.apellido = "Durand",
+       alex.edad = 23;
+       
+       console.log(alex);
+       console.log(persona1);
+
+       console.log("=====CLASE DINAMICAS DE LOS OBJETOS====");
+       
+       const objUsuarios = {
+           propiedad: "Valor",
+           [`id ${Math.round(Math.random()*100 +5)}`]  : "Valor Aleatorio"
+       }
+       console.log(objUsuarios); 
+
+       const usuarios = ["Alex", "Leo", "Maricielo", "Jessica", "Silvia"];
+       usuarios.forEach((usuario, posicion)=> objUsuarios[`id ${posicion}`] = usuario)
+       console.log(objUsuarios); 
+
+       console.log("======CLASE THIS=========")
+       console.log(this);
+       console.log(window);
+       console.log(this===window);
+
+       this.nombre= "Contexto Global";
+       function imprimir(){
+           console.log(this.nombre);
+       }
+       imprimir();
+
+       const obj ={
+           nombre: "Contexto Objeto",
+           imprimir: function(){
+               console.log(this.nombre);
+           }
+       }
+       obj.imprimir();
+
+       const obj2 = {
+           nombre: "Contexto Objeto 2",
+           imprimir
+       }
+       obj2.imprimir();
+
+       const obj3 ={
+           nombre: "Contexto Objeto 3",
+           imprimir: () =>{
+               console.log(this.nombre);
+           }
+       }
+       obj3.imprimir();
+
+       function Persona(nombre){
+           this.nombre = nombre;
+           return ()=> console.log(this.nombre);
+           
+       }
+       let nombre = new Persona("Alex");
+       nombre();
+
+
+       console.log("===CLASE CALL, APPLY, BIND===")
+
+       this.lugar = "Contexto Global";
+
+       function saludar(saludo, aquien){
+           console.log(` ${saludo} ${aquien} desde el ${this.lugar}`)
+       }
+
+       saludar("Hola", "Kenai");
+
+       const obj1 = {
+           lugar: "Contexto Objeto"
+       }
+
+       saludar.call(obj1, "Hola","Alex");
+       saludar.apply(obj1, ["Adios", "Durand"]);
+
+       const persona2 ={
+        nombre: "Alex",
+        saludar: function(){
+            console.log(`Hola ${this.nombre}`)
+        }
+       }
+       persona2.saludar();
+
+       const otrapersona ={
+           saludar: persona2.saludar.bind(persona2)
+       }
+       otrapersona.saludar();
+
+       console.error("===CLASE JSON====")
+
+       const json ={
+           cadena: "Alex",
+           numero: 23,
+           booleano: true,
+           arreglo: ["correr", "programar", "cocinar"],
+           objeto: {
+               twitter: "rdurandk1997@gmail.com",
+               email: "rdurandk1997@gmail.com"
+           },
+           nulo: null
+       }
+       console.log(json);
+       console.log(JSON.parse("{}"));
+       console.log(JSON.parse("[1,2,3]"));
+       console.log(JSON.stringify({x:5, x:6}));
+       console.log(JSON.stringify(true))
+
+       let texto = "Hola, huevon";
+       const hablar = (texto) => speechSynthesis.
+       speak(new SpeechSynthesisUtterance(texto));
+
+       hablar(texto);
+      
+       
+
+    </script>
+</body>
+</html>

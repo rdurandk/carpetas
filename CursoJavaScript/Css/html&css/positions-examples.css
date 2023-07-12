@@ -1,0 +1,74 @@
+body{
+    margin: 0;
+    /*padding-top: 50px;*/
+}
+.header{
+    background-color: #5500aa;
+    width: 100%;
+    height: 50px;
+}
+.fixed-top{
+    position: fixed;
+    top: 0;
+}
+.sticky-top{
+    position: sticky;
+    top: 0px;
+    z-index: 999;
+}
+.hero-image{
+    background-color: palegoldenrod;
+    width: 100%;
+    height: 100vh;
+}
+
+
+.slide{
+    background-color: paleturquoise;
+    width: 100%;
+    height: 100vh;
+}
+
+.slide:nth-child(odd){
+    background-color: palevioletred;
+}
+.slide-title{
+    background-color: palegreen;
+    position: sticky;
+    top: 50px;
+    height: 50px;
+    border: thin solid red;
+    padding: 16px;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/*VENTANA MODAL*/
+.modal-window{
+    background-color: black;
+    /*position: absolute;*/
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0 ;
+    opacity: 0.5;
+    display: none;
+}
+.modal-window:target{
+    display: block;
+}
+
+/*MARGENES NEGATIVOS*/
+/*solo aceptan margenes negativos mas no paddings negativos*/
+.box{
+    background-color: saddlebrown;
+    padding: 20px;
+    /*
+    margin-top: -30px;
+    margin-left: -30px;
+    */
+    padding: -30px;
+}

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Ejercicios Logicos</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script>
+
+        //Primer Ejercicio
+        const caracteres = (cadena = "Hola Mundo") => console.log(cadena.length);
+        caracteres();
+
+        //Segundo Ejercicio
+        const nuevaCadena = (cadena2 = undefined, longitud = undefined) =>
+            (!cadena2)
+                ? console.warn("No ingreso ningun caracter")
+                : (longitud === undefined)
+                    ? console.warn("No ingreso una longitud de tipo slice")
+                    : console.log(cadena2.slice(0, longitud));
+
+        nuevaCadena("Alexander", 4);
+        //Tercer Ejercicio
+        const functionArray = (caracteres3 = " ", espacio = undefined) =>
+            (!caracteres3)
+                ? console.warn("No ingreso ningun caracter")
+                : (espacio == undefined)
+                    ? console.warn("No ingreso ningun espacio")
+                    : console.log(caracteres3.split(espacio));
+
+        functionArray("Hola que tal", " ");
+        //Cuarto Ejercicio
+        const textoRepeat = (texto = "", repetir = 0) => {
+            const texto_repeat = texto.repeat(repetir);
+            console.log(texto_repeat);
+        }
+
+        textoRepeat("Hola mundo", 3);
+        //Quinto Ejercicio
+        const invertirString = (texto1 = "") => {
+            if (!texto1) {
+                console.warn("No ingreso ningun texto");
+
+            } else {
+                let nuevoTexto = "";
+                for (let i = texto1.length; i >= 0; i--) {
+                    nuevoTexto += texto1.charAt(i);
+                }
+                console.log(nuevoTexto);
+
+            }
+        }
+        invertirString("Hola Mundo");
+        //Sexto Ejercicio
+        const contarTexto = (string = "", word = "") => {
+            if (!string) {
+                console.warn("No ingreso ningun texto");
+            }
+            if (!word) {
+                console.warn("No especifico ninguna palabra");
+            }
+
+            let contador = 0;
+            let i = 0;
+            while (i !== -1) {
+                i = string.indexOf(word, i);
+
+                if (i !== -1) {
+                    i++
+                    contador++
+                }
+                
+            }
+            return console.info(`La palabrada ${word} se repite ${contador} veces ${i}`);
+
+
+        }
+        contarTexto("Hola mundo adios mundo mundo", "mundo");
+        //Septimo Ejercicio
+        const palindromo = (palabra = "") => {
+            if (!palabra) return console.warn("No ingresaste una palabra");
+
+            palabra = palabra.toLowerCase();
+            let alreves = palabra.split("").reverse().join("");
+
+            return (palabra === alreves)
+                ? console.info(`Si es palindromo. Palabra original ${palabra}, palabra al reves ${alreves}`)
+                : console.info(`No es palindromo. Palabra original ${palabra}, palabra al reves ${alreves}`);
+        }
+
+        palindromo("somos");
+        //Octavo Ejercicio
+        const eliminarCaracteres = (texto2 = "", patron = "") =>
+            (!texto2)
+                ? console.warn("No ingresaste un texto")
+                : (!patron)
+                    ? console.warn("No ingresaste un patron de caracteres")
+                    : console.info(texto2.replace(new RegExp(patron, "ig"), ""));
+
+
+        eliminarCaracteres("Alex5", "ale");
+        //Noveno Ejercicio
+        const numeroAleatorio = () => {
+            let num = 0
+            num = Math.random() * (600 - 500) + 500
+            console.log(Math.round(num));
+        }
+
+        numeroAleatorio();
+        //Decimo Ejercicio
+        const capicua = (num = 0) => {
+            if (!num)
+                return console.warn("No ingreso ningun numero")
+            if ((typeof num == "string"))
+                return console.warn(`El numero ${num} no es un numero`)
+            num = num.toString();
+            let alReves = num.split("").reverse().join("")
+            return ((num) === alReves)
+                ? console.log(`Si es capicua. El numero original es ${num} el numero alreves es ${alReves}`)
+                : console.log(`No es capicua. El numero original es ${num} el numero alreves es ${alReves}`);
+        }
+        capicua(303);
+        //Ejercicio 11
+        const factorial = (num = undefined) => {
+            if (num === undefined) return console.warn("No ingreso ningun numero");
+            if (typeof num !== 'number') return console.warn("No se admite numeros negativos");
+            if (num === 0) return console.warn("El numero no puede ser 0");
+
+            if (Math.sign(num) === -1) return console.warn("No se acepta numeros negativos")
+            if (Math.sign(num) === 1) {
+                let total = 1;
+                for (let i = 1; i <= num; i++) {
+                    total *= i;
+                }
+                console.info(total);
+            }
+
+
+
+        }
+        factorial(-5);
+        factorial(5);
+
+        //Ejercicio 12
+        const numerosPrimos = (num = undefined) => {
+            if (num == undefined) return console.warn("No ingreso ningun numero");
+            if (typeof num !== "number") return console.warn(`El numero ${num} no es un numero`);
+            if (Math.sign(num) === -1) return console.warn("El numero no puede ser negativo");
+
+            let divisible = false;
+            for (let i = 2; i < num; i++) {
+                if (num % i === 0) {
+                    divisible = true
+                    break;
+                }
+            }
+            return (divisible)
+                ? console.log(`El numero ${num}. No es primo`)
+                : console.log(`El numero ${num}. Si es primo`)
+        }
+        numerosPrimos(-1);
+        numerosPrimos("9");
+        numerosPrimos(7);
+
+        //Ejercicio 13
+        const parImpar = (num = undefined) => {
+            if (num == undefined) return console.warn("No ingreso ningun numero");
+            if (typeof num !== 'number') return console.warn(`El numero ${num} no es un numero`);
+            if (Math.sign(num) == -1) return console.warn("El numero no puede ser negativo");
+
+            return (num % 2 == 0)
+                ? console.info(`El numero ${num} es par`)
+                : console.info(`El numero ${num} es impar`)
+        }
+        parImpar();
+        parImpar(24);
+
+        //Ejercicio 14
+        console.log("---------Ejercicio 14----------");
+
+        const gradosCF = (num = 0, grado = "") => {
+            if (!num && !grado) return console.warn("Favor de ingresar un numero y un grado");
+            if (typeof num !== 'number') return console.warn("No ingreso un numero");
+            if (!grado) return console.warn("No especifico el tipo de grado C o F");
+
+            if (grado === "C") {
+                let gradosF = 0;
+                gradosF = ((num * 9 / 5) + 32).toFixed(3);
+                return console.info(`${num} grados Celsius a Fahrenheit es: ${gradosF}`);
+            } else if (grado === 'F') {
+                let gradosC = 0;
+                gradosC = ((num - 32) * (5 / 9)).toFixed(3);
+                return console.info(`${num} grados Fahrenheit a Celsius es: ${gradosC}`);
+            } else {
+                return console.warn("Favor de ingresar 'C' si es grado Celsius o 'F' si es Fahrenheit");
+            }
+        }
+        gradosCF(33, "F");
+        gradosCF(-10, "F");
+
+        //Ejercicio 15
+        console.log("-------Ejercicio 15 --------");
+
+        const binarioDecimal = (num = undefined, base = undefined) => {
+            if (num == undefined && base == undefined) return console.warn("Debe ingresar un numero y su base");
+            if (num == undefined) return console.warn("No ingreso un numero");
+            if (base == undefined) return console.warn("No ingreso una base binaria o decimal");
+            if (typeof num !== 'number') return console.warn("No es un numero");
+            if (typeof base !== 'number') return console.warn("No es un numero");
+
+            if (base == 2) {
+                console.info(`${num} base ${base} es = ${parseInt(num, base)} base 10`);
+            } else if (base == 10) {
+                console.info(`${num} base ${base} es = ${num.toString(2)} base 2`);
+            }
+        }
+        binarioDecimal();
+        binarioDecimal(100, 2);
+        binarioDecimal(83, 10);
+
+        //Ejercicio 16
+        console.log("------Ejercicio 16 ------");
+
+        const porcentajeNumero = (num = undefined, porcentaje = undefined) => {
+            if (num == undefined && base == undefined) return console.warn("Debe ingresar un numero y su porcentaje");
+            if (num == undefined) return console.warn("No ingreso un numero");
+            if (porcentaje == undefined) return console.warn("No ingreso un porcentaje");
+            if (typeof num !== 'number') return console.warn("No es un numero");
+            if (typeof porcentaje !== 'number') return console.warn("No es un numero");
+
+            let porcentaje_decimal;
+            porcentaje_decimal = (porcentaje / 100)
+            let total;
+            total = num * porcentaje_decimal;
+            let descuento;
+            descuento = num - total;
+            console.info(`El descuento de  ${porcentaje}% de ${num} es : ${descuento}`);
+
+        }
+        porcentajeNumero(1000, 20);
+
+        //Ejercicio 17
+        console.log("----Ejercicio 17 --------");
+
+        const añosTranscurridos = (fecha = undefined) => {
+
+            if (fecha == undefined) return console.warn("No ingreso ninguna fecha");
+            if (!fecha instanceof Date) return console.warn("Esto no es una fecha");
+
+            let milisegundos = new Date().getTime() - fecha.getTime(),
+                años = (milisegundos / 31536000000);
+
+
+            return (Math.sign(años) == -1)
+                ? console.info(`Faltan ${Math.abs(años)} años para calcular la fecha ${fecha}`)
+                : console.info(`Han pasado ${Math.floor(años)} años hasta ahora`);
+
+        }
+        añosTranscurridos(new Date(1997, 8, 30));
+
+        //Ejercicio18
+        console.log("------Ejercicio 18-------");
+        const vocalesConsonantes = (texto = "") => {
+            if (!texto) return console.warn("Ingrese una palabra o frase para evaluar");
+            if (typeof texto !== 'string') return console.warn("Esto no es un texto o una palabra");
+
+            texto = texto.toLocaleLowerCase();
+            let vocal = 0;
+            let consonante = 0;
+            for (let letras of texto) {
+                if (/[aeiou]/.test(letras)) vocal++;
+                if (/[bcdfghjklmnñpqrstvwxyz]/.test(letras)) consonante++;
+
+            }
+            return console.info({
+                texto,
+                vocal,
+                consonante
+            });
+
+        }
+        vocalesConsonantes("Hola Mundo");
+
+        //Ejercicio 19
+        console.log("------Ejercicio 19-------");
+
+        const validarNombre = (nombre = "") => {
+            if (!nombre) return console.warn("No ingreso ningun nombre");
+            if (typeof nombre !== 'string') return console.warn("No es una cadena para un nombre");
+
+            let expR = /^[a-zA-Záéíóú\s]+$/g.test(nombre);
+
+            return (expR)
+                ? console.info(`${nombre}. Si es un nombre`)
+                : console.info(`${nombre}. No es un nombre`);
+        }
+
+        validarNombre("Alexander Durand");
+
+        //Ejercicio 20
+        console.log("-----Ejercicio 20-------");
+        const validarCorreo = (correo = "") => {
+            if (!correo) return console.warn("No ingreso niguna cadena para el correo");
+            if (typeof correo !== 'string') return console.warn("Esto no es una cadena para un correo");
+
+            let expR = /^[a-z\d_.-]+\@[a-z\d-]+\.([a-z]{2,10})$/gi.test(correo);
+
+            return (expR)
+                ? console.info(`${correo}. Si es un correo`)
+                : console.info(`${correo}. No es un correo`)
+        }
+        validarCorreo("Rdurandk1997_@gmail.comkeptrsd");
+        validarCorreo("Rdurandk1997_@gmail.comkeptrsdd");
+
+        //Ejercicio 21
+        console.log("-----Ejercicio 21-------");
+        const numerosArrayElevados = (array = undefined) => {
+            if (array === undefined) return console.warn("No ingreso ningun elemento");
+            if (!(array instanceof Array)) return console.warn("Esto no es un array");
+
+            for (let num of array) {
+                if (typeof num !== 'number') return console.warn("El array solo puede ser de numeros");
+            }
+            const nwArray = array.map(num => {
+                return num * num;
+            });
+
+            return console.info(`El array original es ${array}.\nEl array elevado es: ${nwArray}.`);
+
+        }
+        numerosArrayElevados([1, 2, 3]);
+        //Ejercicio 22
+        console.log("-----Ejercicio 22-------");
+        const numerosEvaluados = (array = undefined) => {
+            if (array === undefined) return console.warn("No ingreso ningun valor");
+            if (!array instanceof Array) return console.warn("Esto no es un array");
+
+            for (const num of array) {
+                if (typeof num !== 'number') return console.info(`${array} no es un array de tipo numero`);
+            }
+
+            return console.info(`Arreglo original: ${array}\nValor maximo ${Math.max(...array)}\nValor minimo ${Math.min.apply(null, array)}`);
+        }
+        numerosEvaluados([80, 2, -60, 50, 10]);
+        //Ejercicio 23
+        console.log("-----Ejercicio 23-------");
+
+        const arrayParImpar = (array = undefined) => {
+            if (array === undefined) return console.warn("No ingreso ningun valor");
+            if (!array instanceof Array) return console.warn("Esto no es un array");
+
+            for (const num of array) {
+                if (typeof num !== 'number') return console.info(`${array} no es un array de tipo numero`);
+            }
+            return console.info({
+                pares: array.filter(num => num % 2 == 0),
+                impares: array.filter(num => num % 2 !== 0),
+            });
+
+        }
+        arrayParImpar([2, 4, 5, 7]);
+        //Ejercicio 24 
+        console.log("-----Ejercicio 24-------");
+
+        const numerosAscDesc = (array = undefined) => {
+            if (array === undefined) return console.warn("No ingreso ningun valor para el array");
+            if (!array instanceof Array) return console.warn("No ingreso un valor de tipo Array");
+            for (const num of array) {
+                if (typeof num !== 'number') return console.warn("El array debe ser de tipo numero");
+            }
+
+
+            console.info({
+                array,
+                asc: array.map(el => el).sort((a,b) =>  a-b),
+                des: array.map(el => el).sort((a,b) =>  a-b).reverse(),
+
+            })
+
+        }
+        numerosAscDesc([1,10,2,20]);
+
+        //Ejercicio 25
+        console.log("-----Ejercicio 25 -------");
+        const elementosDuplicados = (arra = undefined) => {
+            if (arra === undefined) return console.warn("Debe ingresar un elemento");
+            if (!arra instanceof Array) return console.warn(`El valor ${arra} no es un Array`);
+            if (arra.length === 0) return console.error("El arreglo esta vacio");
+            if (arra.length === 1) return console.warn("El arreglo debe tener al menos 2 elementos");
+            
+            const newArr = arra.filter((valor, index) => arra.indexOf(valor) === index);       
+            console.log(newArr);
+            console.log([...new Set(arra)]);
+        }
+
+
+        elementosDuplicados([true, 1, 2, 3, 4, 4, true, true, true]);
+
+        //Ejercicio 26
+        console.log("-------Ejercicio 26 ------");
+        const numerosPromedios = (arra = undefined) => {
+            if (arra === undefined) return console.warn("Debe ingresar un elemento");
+            if (!arra instanceof Array) return console.warn(`El valor ${arra} no es un Array`);
+            if (arra.length === 0) return console.error("El arreglo esta vacio");
+            for (const num of arra) {
+                if (typeof num !== 'number') return console.info(`El valor ${arra} debe ser de tipo numerico`);
+            }
+
+            console.info(
+                arra.reduce((acumulador, num, index, arra) => {
+                    acumulador += num;
+                    if (index === arra.length - 1) {
+                        return `El promedio de ${arra.join("+")} es: ${acumulador / arra.length}`
+                    } else {
+                        return acumulador;
+                    }
+                })
+            )
+
+        }
+        numerosPromedios([1, 2, 3, 4, 5]);
+
+        //Ejercicio 27
+
+        class Peliculas {
+            constructor({ id, titulo, director, estreno, pais, genero, calificacion }) {
+                this.id = id;
+                this.titulo = titulo;
+                this.director = director;
+                this.estreno = estreno;
+                this.pais = pais;
+                this.genero = genero;
+                this.calificacion = calificacion;
+
+                this.validarIMDB(id);
+                this.validarTitulo(titulo);
+                this.validarDirector(director);
+                this.validarAño_de_Estreno(estreno);
+                this.validarPais_de_Origen(pais);
+                this.validarGeneros(genero);
+                this.validarCalificacion(calificacion);
+
+
+            }
+
+            static get listaGeneros() {
+                return ["Action", "Comedy", "Terror", "Drama"];
+            }
+
+            static generosAceptados() {
+                return console.info(`Los generos aceptados son: ${Peliculas.listaGeneros.join(", ")}`);
+            }
+
+            validarCadena(propiedad, valor) {
+                if (!valor) return console.info(`${propiedad} "${valor}" esta vacio`);
+                if (typeof valor !== 'string') return console.info(`${propiedad} "${valor}" ingresado debe ser de tipo string`);
+
+                return true;
+            }
+            validarNumero(propiedad, valor) {
+                if (!valor) return console.info(`${propiedad} "${valor}" esta vacio`);
+                if (typeof valor !== 'number') return console.info(`${propiedad} "${valor}" ingresado debe ser de tipo numerico`);
+
+                return true;
+            }
+            validarArray(propiedad, valor) {
+                if (!valor) return console.warn(`${propiedad} "${valor}" esta vacio`);
+                if (!(valor instanceof Array)) return console.info(`${propiedad} "${valor}" ingresado debe ser de tipo Array`);
+                for (let validar of valor) {
+                    if (typeof validar !== 'string') return console.info(`El valor ${valor} debe ser de tipo string`);
+                }
+                return true;
+            }
+
+            validarIMDB(id) {
+                if (this.validarCadena("IMDB id", id)) {
+                    if (!/^([a-z]{2})+([\d]{7})+$/ig.test(id)) {
+                        return console.info(`El IMDB id ${id} no es valido, debe tener 9 caracteres, 2 primeras letras minusculas y 7 numeros`);
+                    }
+                }
+            }
+            validarTitulo(titulo) {
+                if (this.validarCadena("Titulo de Pelicula:", titulo)) {
+                    if (titulo.length > 10) {
+                        return console.info(`El titulo: ${titulo} no puede ser de mas de 100 caracteres`)
+                    }
+                }
+            }
+            validarDirector(director) {
+                if (this.validarCadena("Director:", director))
+                    if (director.length > 50)
+                        return console.info(`El director ${director} no puede ser mas de 50 caracteres`)
+            }
+            validarAño_de_Estreno(estreno) {
+                if (this.validarNumero("Año de estreno:", estreno))
+                    if (estreno < 999 || estreno > 9999)
+                        return console.info(`El año ${estreno} no puede ser menor a 999 y mayor a 9999`);
+            }
+            validarPais_de_Origen(pais) {
+                this.validarArray("Pais de Origen:", pais)
+
+            }
+            validarGeneros(genero) {
+                if (this.validarArray("Generos: ", genero))
+                    for (const gen of genero) {
+
+
+                        if (Peliculas.listaGeneros.includes(gen) == true) {
+
+                        }
+                        if (Peliculas.listaGeneros.includes(gen) == false) {
+                            console.error(`El genero ${gen} no esta permitida`);
+                            Peliculas.generosAceptados();
+                        }
+
+
+                    }
+            }
+            validarCalificacion(calificacion) {
+                if (this.validarNumero("Calificacion: ", calificacion))
+                    return (calificacion < 0 || calificacion > 10)
+                        ? console.info(`La calificacion no puede ser menor a 0 y mayor a 10`)
+                        : this.calificacion = calificacion.toFixed(1);
+
+
+            }
+            fichaTecnica() {
+                console.info(`Ficha Tecnica:Id: ${this.id}\nTitulo: "${this.titulo}"\nDirector: "${this.director}"\nEstreno: "${this.estreno}"\nPais: "${this.pais}"\nGenero: "${this.genero}"\nCalificacion: "${this.calificacion}"`)
+            }
+        }
+
+
+        const pelicula = new Peliculas({
+            id: "tt1234567",
+            titulo: "Hola mundo",
+            director: "Alexander Durand",
+            estreno: 2015,
+            pais: ["Peru", "Mexico"],
+            genero: ["Action"],
+            calificacion: 8.2,
+        });
+        pelicula.fichaTecnica();
+
+        const pelis = [
+            {
+                id: "tt1234569",
+                titulo: "Batman Caballero de la Noche",
+                director: "Alexander Durand",
+                estreno: 2010,
+                pais: ["Peru", "USA"],
+                genero: ["Action"],
+                calificacion: 9.0,
+            },
+            {
+                id: "tt1234568",
+                titulo: "Titanic",
+                director: "Alexander Durand",
+                estreno: 2015,
+                pais: ["Peru", "Mexico"],
+                genero: ["Drama"],
+                calificacion: 8.2,
+            }
+
+        ]
+        pelis.forEach(el => new Peliculas(el).fichaTecnica())
+
+    </script>
+</head>
+
+<body>
+    <h1>Ejercicios Logicos</h1>
+</body>
+
+</html>

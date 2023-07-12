@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Ejemplos Practicos Flexbox</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            border: thin solid red;
+            max-width: 100%;
+            height: auto;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            border: thin solid red;
+            flex-grow: 1;
+        }
+
+        .titulares {
+            border: thin solid red;
+            padding: 1rem;
+            background-color: #222;
+            color: #eee;
+        }
+
+        .menu ul {
+            list-style-type: none;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-image {
+            min-height: 100vh;
+            background-repeat: no-repeat;
+            background-image: url("https://placeimg.com/1600/900/animals");
+            color: #fff;
+
+        }
+
+        .hero-image div {
+            min-height: inherit;
+            background-color: rgba(0, 0, 0, .50);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flex-responsive {
+            display: flex;
+            flex-flow: row wrap;
+        }
+
+        .flex-responsive-item {
+            border: thin solid #ff9122;
+            flex: 1 1 200px;
+        }
+
+        @media screen and (min-width: 1024px) {
+            .header {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+               
+            }
+
+            .menu ul {
+                display: flex;
+            }
+
+            .menu li {
+                padding: 0.5rem;
+            }
+
+            .flex-container {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .flex-item {
+                flex: 0 0 50%;
+            }
+
+            .flex-row-reverse {
+                flex-direction: row-reverse;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header class="titulares header">
+        <div class="logo">Logo</div>
+        <nav class="menu">
+            <ul>
+                <li><a href="">Seccion 1</a></li>
+                <li><a href="">Seccion 2</a></li>
+                <li><a href="">Seccion 3</a></li>
+                <li><a href="">Seccion 4</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article class="hero-image">
+            <div>
+                <h1>Flexbox is fuckin COOL</h1>
+            </div>
+
+        </article>
+
+        <section class="flex-container">
+
+            <article class="flex-item">
+                <h2>Titulo</h2>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi, dolor omnis! Minus velit nobis
+                    veniam quaerat eius ducimus provident delectus quas, ex at quia placeat, cumque, cupiditate officia
+                    modi magnam!
+                </p>
+            </article>
+
+            <article class="flex-item">
+                <img src="https://placeimg.com/400/400/people">
+            </article>
+            
+        </section>
+
+        <section class="flex-container flex-row-reverse">
+
+            <article class="flex-item flex-order-1">
+                <h2>Titulo</h2>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi, dolor omnis! Minus velit nobis
+                    veniam quaerat eius ducimus provident delectus quas, ex at quia placeat, cumque, cupiditate officia
+                    modi magnam!
+                </p>
+            </article>
+
+            <article class="flex-item">
+                <img src="https://placeimg.com/400/400/Animals">
+            </article>
+        </section>
+
+        <h2>Responsive sin MediaQuery con Flexbox</h2>
+        <section class="flex-responsive">
+
+            <article class="flex-responsive-item">Item Responsivo 1</article>
+            <article class="flex-responsive-item">Item Responsivo 2</article>
+            <article class="flex-responsive-item">Item Responsivo 3</article>
+            <article class="flex-responsive-item">Item Responsivo 4</article>
+            <article class="flex-responsive-item">Item Responsivo 5</article>
+            <article class="flex-responsive-item">Item Responsivo 6</article>
+            <article class="flex-responsive-item">Item Responsivo 7</article>
+            <article class="flex-responsive-item">Item Responsivo 8</article>
+            <article class="flex-responsive-item">Item Responsivo 9</article>
+            <article class="flex-responsive-item">Item Responsivo 10</article>
+            <article class="flex-responsive-item">Item Responsivo 11</article>
+            <article class="flex-responsive-item">Item Responsivo 12</article>
+            <article class="flex-responsive-item">Item Responsivo 13</article>
+            <article class="flex-responsive-item">Item Responsivo 14</article>
+            <article class="flex-responsive-item">Item Responsivo 15</article>
+            <article class="flex-responsive-item">Item Responsivo 16</article>
+            <article class="flex-responsive-item">Item Responsivo 17</article>
+            <article class="flex-responsive-item">Item Responsivo 18</article>
+            <article class="flex-responsive-item">Item Responsivo 19</article>
+        </section>
+    </main>
+    <footer class="titulares">
+        <h2>Sticky Footer</h2>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Web APIs</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        :root{
+            --yelow-color: #e8c755;
+            --dark-color: #2a2a2a;
+            
+        }
+        .cards{
+            border: thin solid var(--yelow-color);
+            padding: 1rem;
+        }
+        .card{
+            display: inline-block;
+        }
+
+        .card figcaption{
+            padding: 1rem;
+        }
+        
+        .rotate-45{
+            transform: rotate(45deg);
+        }
+        
+        .rotate-135{
+            transform: rotate(135deg);
+        }
+
+        .opacity-80{
+            opacity: .8;
+        }
+
+        .sepia{
+            filter: sepia(1);
+        }
+        .eventos-flujos div{
+            padding: 4rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+        .uno{
+            background-color: yellow;
+        }
+        .dos{
+            background-color: gold;
+        }
+        .tres{
+            background-color: lightyellow;
+        }
+
+        
+    </style>
+    
+</head>
+<body>
+    <h1>Dom</h1>
+    <h2>Web APIs</h2>
+    <ul>
+        <li>Eventos</li>
+        <li>Forms</li>
+        <li>AJAX - Fetch</li>
+        <li>History</li>
+        <li>Web Storage</li>
+        <li>Geolocation</li>
+        <li>Drag & Drop</li>
+        <li>Indexed DB</li>
+        <li>Canvas</li>
+        <li>MatchMedia</li>
+        <li>etc..</li>
+      </ul>
+    <br>
+    <hr><br>
+    <h3>Manejo del DOM</h3>  
+    <p id="que-es">
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse illo ab doloremque expedita aliquam! Praesentium eaque quam voluptatem incidunt, soluta alias doloremque assumenda, expedita, blanditiis nisi adipisci facilis distinctio enim!
+    </p>
+
+    <nav id="menu">
+        <ul>
+            <li><a id="seccion1" class="prueba" href="#">Seccion 1</a></li>
+            <li><a id="seccion2" class="prueba" href="#">Seccion 2</a></li>
+            <li><a id="seccion3" class="prueba" href="#">Seccion 3</a></li>
+            <li><a id="seccion4" class="prueba" href="#">Seccion 4</a></li>
+            <li><a id="seccion5" class="prueba" href="#">Seccion 5</a></li>
+        </ul>
+    </nav>
+    <input type="text" name="nombre" placeholder="Nombre">
+    <a class="link-dom" href="dom.html" style="background-color:#fbd94f; color:#292929" data-description="Document Object Model" 
+    data-prueba= "esto es una prueba">DOM</a>
+    <Section class="cards">
+
+    <figure class="card">
+        <img src="https://placeimg.com/200/200/tech" alt="tech">
+        <figcaption>Tech</figcaption>
+    </figure>
+
+    <figure class="card">
+        <img src="https://placeimg.com/200/200/animals" alt="animals">
+        <figcaption>Animals</figcaption>
+    </figure>
+
+    <figure class="card">
+        <img src="https://placeimg.com/200/200/people" alt="people">
+        <figcaption>People</figcaption>
+    </figure>
+
+    <figure class="card">
+        <img src="https://placeimg.com/200/200/arch" alt="arch">
+        <figcaption>Arch</figcaption>
+    </figure>
+    <figure class="card">
+        <img src="https://placeimg.com/200/200/nature" alt="nature">
+        <figcaption>Nature</figcaption>
+    </figure>
+    </Section>
+    <template id="template-card">
+    <figure class="card">
+        <img>
+        <figcaption></figcaption>
+    </figure>
+    
+    </template> 
+    <h3>Eventos en Javascript</h3>
+    <h4>Manejadores de Eventos</h4>
+    <button onclick="holaMundo()">Evento con atributo HTML</button>
+    <br><br>
+    <button id="evento-semantico">Evento con manejador semanatico</button>
+    <br><br>
+    <button id="evento-multiple">Evento con manejador multiple</button>
+    <br><br>
+    <button id="evento-remover">Removiendo Eventos con Manejador Multiples</button>
+    <br><br>
+    <h4>Flujos de Eventos</h4>
+    <section class="eventos-flujos">
+        <div class="uno">
+            1
+            <div class="dos">
+                2
+                <div class="tres">
+                    3
+                    <a href="https://jonmircha.com/" target="_blank" rel="noopener">jonmircha.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <h3 style="width: 2000px;">MANEJO DEL BOOM</h3>
+    <button id="abrir-ventana">Abrir Ventana</button>
+    <br><br>
+    <button id="cerrar-ventana">Cerrar Ventana</button>
+    <br><br>
+    <button id="imprimir-ventana">Imprimir Ventana</button>
+    <br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+
+</body>
+<script src='Javascript/dom.js'></script>
+</html>

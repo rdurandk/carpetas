@@ -1,0 +1,186 @@
+/* 
+  Estilos de la Fuente
+  font-family
+  font-size
+  font-weight
+  font-style
+  font-variant
+  line-height
+  font
+*/
+
+.font{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: sans-serif;
+    font-size: 32px;
+    font-weight: lighter;
+    /*oblique es italic pero un poco mas*/
+    font-style: oblique;
+    /*cada letra de una palabra sera mayuscula*/
+    font-variant: small-caps;
+    
+    /*Separacion en los parrafos*/
+    line-height: 1.6;
+    /*shorthand de todas */
+    font: italic small-caps bold 16px / 1.6 monospace;
+    
+    
+}
+
+/* 
+Formato woff o woff2 - Web Open Font Format
+
+font-display:
+  auto - permite que el navegador utilice el método predeterminado que suele ser block
+  block - oculta brevemente el texto hasta que la fuente haya sido descargada por completo
+  swap - indica al navegador que utilice la fuente alternativa para mostrar el texto hasta que la fuente personalizada se haya cargado por completo
+  fallback - es una mezcla de auto y swap
+  optional -ocultará el texto, luego lo cargará con la fuente alternativa y finalmente aplicará la fuente personalizada
+*/
+
+@font-face {
+    font-family: Chalet;
+    src: url("../../assets/font/Chalet.woff") format("woff"); 
+    font-display: swap;
+        /*url("../../assets/font/Chalet.woff2") format("woff2");*/
+}
+
+.chalet{
+    font-family: "Chalet", sans-serif;
+}
+@font-face{
+    font-family: "Pecita";
+    src: url("../../assets/font/Pecita.woff") format("woff");
+    font-display: swap; 
+}
+.pecita{
+    font-family: "Pecita", sans-serif;
+    font-size: 2rem;
+}
+/*Google fonts : tenemos que agregar el link de google forms con la tipografia en nuestro html*/
+.raleway{
+    font-family: "Raleway", "sans-serif";
+    font-size: 2rem;
+}
+
+/* 
+text-align
+text-decoration
+text-indent
+text-overflow
+  overflow: hidden;
+  white-space: nowrap;
+text-transform
+letter-spacing
+white-space
+word-break
+word-spacing
+writing-mode
+*/
+
+.text{
+    background-color: blanchedalmond;
+    border: thin solid black;
+    padding: 1rem;
+    font-size: 2rem;
+    text-align: justify;
+    text-align: left;
+    text-decoration: underline;
+    /*aplica una sangria al comienzo*/
+    text-indent: 2rem;
+    /*Letra inicial tendra mayuscula*/
+    text-transform: capitalize;
+    /*Minuscula y Mayuscula*/
+    text-transform: lowercase;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    /*rompe las palabras al final de una linea*/
+    word-break: break-all;
+    /*colocar verticalmente el texto*/
+    writing-mode: vertical-rl;
+    
+
+    
+}
+
+.text-overflow{
+    background-color: blanchedalmond;
+    padding: 1rem;
+    width: 50%;
+    font-size: 2rem;
+    text-align: justify;
+    text-align: left;
+    text-decoration: none;
+    /*aplica una sangria al comienzo*/
+    text-indent: 2rem;
+    /*texto-overflow ellipsis nos dara unos puntos suspensivos si sobrepasa en el bloque*/
+    text-overflow: ellipsis;
+    /*pero para que esto funcione debe tener las sgts 2 propiedades*/
+    overflow: hidden;
+    white-space: nowrap;
+    
+}
+/*espacio en blanco del elemento*/
+.white-space{
+    background-color: aqua;
+    /*sin sangria*/
+    white-space: pre-line;
+    white-space: pre;
+    white-space: pre-wrap;
+    
+}
+/*espacio por palabra*/
+.word-spacing{
+    font-size: 2rem;
+    word-spacing: 2rem;
+}
+
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+   
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
+  .material-icons {
+  font-family: 'Material Icons';
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.far{
+    font-size: 48px;
+}

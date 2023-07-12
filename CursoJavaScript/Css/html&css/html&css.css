@@ -1,0 +1,328 @@
+/*Regla de CSS consta de 2 partes
+1- selector
+2- bloque de declaraciones:{
+    atributo: valor;
+    atributo-de-mas-dos: otro-valor;
+}
+*/
+/*@import son mala practica porque son bloqueantes a la hora que lee
+la instruccion*/
+
+/*@import url("otro-hoja.css");*/
+html{
+    scroll-behavior: smooth;
+
+}
+h1{
+    color: orangered;
+    background-color: black;
+    text-align: center;
+}
+/* 
+  Links de referencia y documentación
+  https://es.wikipedia.org/wiki/Hoja_de_estilos_en_cascada
+  https://www.w3.org/html/logo/
+  https://www.w3.org/standards/webdesign/htmlcss.html
+  https://www.w3.org/TR/css-2020/
+  https://developer.mozilla.org/es/docs/Web/CSS
+  https://cssreference.io/
+  https://caniuse.com/
+  https://codeguide.co/
+*/
+
+/* 
+Selectores Básicos
+  1) Etiquetas - son elementos html
+  2) Identificadores - atributo id - #
+  3) Clases - atributo class - .
+*/
+
+p {
+    color: midnightblue;
+  }
+  
+  /* Dar estilos con Id se considera un AntiPatrón */
+  #parrafo-dos {
+    background-color: skyblue;
+  }
+  
+  /* Dar estilos con clases nos permite reutilizar nuestro código CSS */
+  .bg-skyblue {
+    background-color: skyblue;
+  }
+  
+  .bg-steelblue {
+    background-color: steelblue;
+  }
+  
+  .text-20 {
+    font-size: 20px;
+  }
+  
+  .text-32 {
+    font-size: 32px;
+  }
+  
+  .text-white {
+    color: white;
+  }
+
+  /*******Selectores******/
+
+  /*Solo aplica a los hijos de primer nivel*/
+  .hijos-directos > li {
+    background-color: thistle;
+  }
+  /*No importara la jeraquia de los primeros hijos*/
+  .hijos-descendientes b {
+    background-color: thistle;
+  /*Los selectores de hermano va a aplicar a los elementos que son
+  hermanos y que esten por debajo del elemento de referencia*/
+  }
+  .hermanos-general ~ li{
+    background-color: thistle;
+  }
+  /*Los selectores de hermano va a aplicar a los elementos que son
+  hermanos y que este 1 elemento por debajo del elemento de referencia*/
+  .hermanos-adyacentes + li{
+    background-color: thistle;
+  }
+
+  /******Selectores de Atributos*********/
+
+  .selectores-atributos a[href]{
+    color: orangered;
+  }
+  .selectores-atributos a[target="_blank"]{
+    font-weight: bold;
+  }
+  /*El comodin del * aplica al estilo si contiene el texto en cuestion en cualquiera*/
+  .selectores-atributos a[href*="jonmircha"]{
+    font-size: 24px;
+  }
+  /*El comodin del ^ aplica al estilo si contiene el texto en cuestion al inicio*/
+  .selectores-atributos a[href^="http:"]{
+    text-decoration: none;
+  }
+  /*El comodin del * aplica al estilo si contiene el texto en cuestion al final*/
+  .selectores-atributos a[href$=".com"]{
+    background-color: black;
+  }
+  /*El comodin del ~ aplica al estilo si contiene el texto en cuestion en un lista
+  separada por espacios*/
+  .selectores-atributos a[class~="cursos"]{
+    background-color: midnightblue;
+  }
+  /*El comodin del | aplica al estilo si contiene el texto en cuestion en un lista
+  separa por espacios y que despues del texto en cuestion puede venir un guion en medio*/
+  .selectores-atributos a[class|="menu"]{
+    font-style: italic;
+  }
+
+  /**Selector Universal***/
+  *{
+    font-family: sans-serif;
+  }
+  .selector-universal * {
+    font-size: 24px;
+  }
+  /* 
+Pseudoclases - Dan estilos dependiendo del contexto, posición o estado del elemento
+https://developer.mozilla.org/es/docs/Web/CSS/Pseudo-classes
+*/
+  .form-pseudoclases *:required{
+    border-color: yellow;
+  }
+  .form-pseudoclases *:valid{
+    border-color: green;
+  }
+  .form-pseudoclases *:invalid{
+    border-color: red;
+  }
+  .form-pseudoclases *:focus{
+    border-color: skyblue;
+  }
+  .form-pseudoclases *:disabled{
+    border-color: pink;
+  }
+  
+  .menu-pseudoclases a:visited{
+    color: olive; 
+  }
+  .menu-pseudoclases a:hover{
+    color: orange; 
+  }
+  
+  .p-pseudoclases:hover{
+    font-size: 20px;
+  }
+  /*Nota: Target da a conocer cuando selecionamos a un objetivo*/
+  #temario-css:target{
+    border: thick solid lightgreen;
+  }
+  .lista-pseudoclases li:first-child{
+    color: green;
+  }
+  .lista-pseudoclases li:last-child{
+    color: violet;
+  }
+  .lista-pseudoclases li:nth-child(3){
+    color: navy;
+  }
+  /*va de 4 en 4*/
+  .lista-pseudoclases li:nth-child(4n){
+    font-size: 20px;
+  }
+  /*va de 3 en 3*/
+  .lista-pseudoclases li:nth-child(3n){
+    font-weight: bold;
+  }
+  /*even: pares*/
+  .lista-pseudoclases li:nth-child(even){
+    background-color: yellow;
+  }
+  /*odd: impares*/
+  .lista-pseudoclases li:nth-child(odd){
+    background-color: orange;
+  }
+  /*NOTA: SI SU PRIMER HIJO NO ES UNA P entonces se especifica
+  con first of type o nth of type*/
+  .articulo-pseudoclases p:first-of-type{
+    background-color: pink;
+  }
+  .articulo-pseudoclases p:last-of-type{
+    background-color: pink;
+  }
+  .articulo-pseudoclases p:nth-of-type(3){
+    background-color: fuchsia;
+  }
+  .articulo-pseudoclases *:not(p){
+    background-color: #8f9bd1;
+  }
+
+  /*
+Pseudoelementos - Dan estilos a partes específicas de un elemento, se usa el :: 
+para diferenciarlos de las pseudoclases
+https://developer.mozilla.org/es/docs/Web/CSS/Pseudoelementos
+*/
+
+  .saga-geminis::before{
+    content: "🤦";
+  }
+  .saga-geminis::after{
+    content: "😎";
+  }
+  .saga-precio::before{
+    content: "$";
+    font-weight: bold;
+  }
+  .saga-precio::after{
+    content: "USD";
+    font-weight: bold;
+  }
+
+  .p-pseudoelementos::first-letter{
+    font-weight: bold;
+    font-size: 22px;
+  }
+  .p-pseudoelementos::first-line{
+    color: coral;
+  }
+  .p-pseudoelementos::selection{
+    color: greenyellow;
+    background-color: black;
+  }
+  .input-pseudoelementos::placeholder{
+    color: green;
+  }
+
+
+  /**Arupar Selectores**/
+  .form-agrupar-selectores input[type="email"],
+  .form-agrupar-selectores input[type="text"],
+  .form-agrupar-selectores textarea{
+    border-color: yellow;
+    border-width: 2px;
+    border-style: dashed;
+    background-color: black;
+    font-size: 20px;
+    display: block;
+    width: 300px;
+  }
+  
+  /* 
+  El Algoritmo de CSS: Es la forma en que el navegador aplica los estilos al documento HTML. Es vital entender este concepto para que entiendas como se aplican y en algunas ocasiones se sobreescriben las reglas CSS.
+  1) La Cascada.
+  2) La Especificidad.
+  3) La Herencia.
+  La Cascada es el mecanismo en que el navegador aplica los estilos. Y toma en cuenta lo siguiente en este orden:
+  1) El Origen del Código:
+    - El User Agent (los estilos por defecto del navegador)
+    - Personalizaciones del usuario.
+    - Los estilos del autor.
+  2) La Especificidad del Selector
+  3) Orden de Aparición
+  
+  La Especificidad es el peso que tiene un selector cuando hay conflicto de estilos. Se calcula de la siguiente forma:
+  Etiquetas y pseudoelementos -------------- 0,0,0,1
+  Clases, atributos y pseudoclases ------------0,0,1,0
+  Identificadores -------------------------------0,1,0,0
+  Estilos en línea--------------------------------1,0,0,0
+  !important ------------------Rompe la especificidad
+La Herencia, es la capacidad de un selector de obtener (heredar) los valores de sus ancestros más cercanos,
+ para aplicarla se usa el valor inherit, si queremos evitarla podemos asignar otro valor o inicializar la propiedad en cuestión con el valor initial
+https://web.dev/learn/css/inheritance/#which-properties-are-inheritable
+  */
+
+  blockquote#cita-marco.cita-marco{
+    background-color: lightsteelblue;
+  }
+  blockquote{
+    background-color: burlywood;
+  }
+  blockquote .cita-marco{
+    background-color: tomato;
+  }
+  #cita-marco{
+    background-color: lightgreen;
+  }
+  .cita-marco{
+    background-color: cornflowerblue;
+  }
+  blockquote#cita-marco{
+    background-color: lightsalmon;
+  }
+  .cita-marco{
+    background-color: mediumaquamarine !important;
+
+  }
+  .cita-marco{
+    background-color: moccasin !important;
+    background-color: darkorange !important;
+    font-size: 32px;
+    border-style: dashed;
+    border-color: red;
+  }
+
+  .cita-marco cite{
+    background-color: pink;
+    background-color:  inherit;
+    font-size: 24px;
+    font-size: initial;
+    border-style: inherit;
+    border-color: inherit;
+  }
+    /* 
+https://autoprefixer.github.io/
+https://caniuse.com/
+Prefijos de los navegadores
+-webkit-user-select: ninguno; 
+-moz-user-select: ninguno;
+-ms-user-select: ninguno;
+selección de usuario: ninguno;
+*/
+
+
+
+
+

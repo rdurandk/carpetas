@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Anidados</title>
+</head>
+
+<body>
+    <h1>Select Anidados</h1>
+    <h2>Mexico</h2>
+
+    <label for="select-primary">Estados</label>
+    <select name="primary" id="select-primary">
+        <option value="">Elige un Estado</option>
+    </select>
+
+    <p></p>
+
+    <label for="select-secondary">Municipios</label>
+    <select name="secondary" id="select-secondary">
+        <option value="">Elige un Municipio</option>
+    </select>
+
+    <p></p>
+
+    <script>
+        const d = document,
+            $selectPrimary = d.getElementById("select-primary"),
+            $selectSecondary = d.getElementById("select-secondary");
+
+        function loadStates() {
+            //poner a de api
+            fetch(`https://pi.copomex.com/query/get_estados?token=33f0245c-de8e-41ef-80af-01694d76f7ee`)
+                .then(res => res.ok ? res.json() : Promise.reject(res))
+                .then(json => {
+                    console.log(json)
+
+                    let template = "";
+                    let $options = `<option value="">Elige un Estado</option>`;
+                    let estados = json.response.estado;
+
+                    estados.forEach(el => {
+                        template += `<option value="${el}">${el}</option>`
+                    })
+                    $selectPrimary.innerHTML = $options + "" + template;
+
+                })
+                .catch((err) => {
+                    let message = err.statusText || "Ocurrio un error";
+                    //Selecionar el hermano siguiente
+                    $selectPrimary.nextElementSibling.innerHTML = `
+                Error ${err.status}: ${message}
+                `;
+                });
+        }
+        function loadTowns(state) {
+            //poner a de api
+            fetch(`https://pi.copomex.com/query/get_municipio_por_estado/${state}?token=33f0245c-de8e-41ef-80af-01694d76f7ee`)
+                .then(res => res.ok ? res.json() : Promise.reject(res))
+                .then(json => {
+                    console.log(json);
+
+                    let template = "";
+                    let municipios = json.response.municipios;
+                    let $options = `<option value="">Elige un Estado</option>`;
+
+                    municipios.forEach(el => {
+                        template += `<option value="${el}">${el}</option>`
+                    })
+
+                    $selectSecondary.innerHTML = $options + "" + template;
+                })
+                .catch((err) => {
+                    let message = err.statusText || "Ocurrio un error";
+                    //Selecionar el hermano siguiente
+                    $selectSecondary.nextElementSibling.innerHTML = `
+                Error ${err.status}: ${message}
+                `;
+                });
+        }
+
+        d.addEventListener("DOMContentLoaded", loadStates());
+
+        $selectPrimary.addEventListener("change", e => loadTowns(e.target.value));
+    </script>
+</body>
+
+</html>

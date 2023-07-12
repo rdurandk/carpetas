@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+    <script>
+        var hola="Hola Mundo";
+        let hello="Hello World";
+        console.log(hola);
+        console.log(hello);
+        console.log(window.hola);
+        console.log(window.hello);
+        //Ambito bloque es lo que esta separado por llaves 
+        //var no esta respetan las variables del bloque mientras que let si lo hace
+        console.log("**********var*******");
+        var musica="Rock";
+        console.log("Variable Musica antes del Bloque", musica);
+        //Esto es un bloque
+        {
+            var musica="POP";
+            console.log("Variable Musica despues del Bloque", musica)
+        }
+        console.log("Variable musica despues del bloque", musica);
+
+        console.log("**********let*******");
+        let musica2="Rock";
+        console.log("Variable Musica antes del Bloque", musica2);
+        //Esto es un bloque
+        {
+            let musica2="POP";
+            console.log("Variable Musica despues del Bloque", musica2);
+        }
+        console.log("Variable musica despues del bloque", musica2);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

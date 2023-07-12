@@ -1,0 +1,54 @@
+html{
+    font-size: 16px;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+*,
+*::before,
+*::after{
+    box-sizing: inherit;
+}
+body,h1,h2{
+    margin: 0;
+}
+
+/*con esto haremos que nuestra enlaces las visitas de nuestras seccion sean "adaptables"*/
+[id]{
+    scroll-margin-top: 65.5px;
+}
+
+.header{
+    position: sticky;
+    top: 0;
+    padding: .25rem;
+    text-align: center;
+    background-color: black;
+    color: #fff;
+}
+img{
+    max-width: 50%;
+    height: auto;
+}
+
+.header a{
+    margin: 0 1rem;
+    color: #00c4d6;
+    text-decoration: none;
+}
+.header a:hover{
+    color: #e94bb4;
+}
+
+.slide{
+    width: 100%;
+    min-height: 100vh;
+    color: #d9e8f0;
+    background-color: #1e2345;
+    padding: 2rem;
+}
+
+.slide:nth-child(even){
+    background-color: #108eb4;
+}
+

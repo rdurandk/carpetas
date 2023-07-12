@@ -1,0 +1,60 @@
+.box{
+    background-color: black;
+    margin: 2rem auto;
+    width: 400px;
+    height: 400px;
+    border: thick solid red;
+}
+.border-radius{
+    background-color: black;
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: 400px;
+    border: thick solid red;
+    border-top-left-radius: 4rem;
+    border-top-right-radius: 4rem;
+    border-bottom-right-radius: 5rem;
+    border-bottom-left-radius: 5rem;
+    border-radius: 2rem 4rem 0rem;
+    border-radius: 4rem 3rem 2rem 1rem;
+    border-radius: 2rem;
+}
+
+.border-radius-2{
+    /*forma eliptica*/
+    border-radius: 2rem / 4rem;
+    /*primer valor en x, el segundo en y*/
+    border-radius: 2rem 4rem/ 4rem 8rem;
+}
+.border-radius-3{
+    border-radius: 50%;
+}
+
+.border-radius-4{
+    width: 400px;
+    height: 200px;
+    width: 200px;
+    height: 400px;
+    border-radius: 50%;
+}
+
+.outline{
+    color: white;
+    text-align: center;
+    /*aparte del borde existe otro borde externo*/
+    outline-width: 10px;
+    outline-style: dashed;
+    outline-color: chartreuse;
+    outline: medium solid blue;
+    border-width: 100px;
+    outline-width: 10px;
+    /*distancia que se aleje de la caja*/
+    outline-offset: 1rem;
+    
+    
+   
+}
+
+

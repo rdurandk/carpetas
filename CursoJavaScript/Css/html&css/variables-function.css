@@ -1,0 +1,62 @@
+/*VARIABLES DESDE LA RAIZ*/
+:root{
+    color: darkgreen;
+    --default-bg-color:skyblue;
+}
+html{
+    color: red;
+    box-sizing: border-box;
+}
+*,
+*::after,
+*::before{
+    box-sizing: inherit;
+}
+.custom-props-1{
+    --primary-color: gray;
+    --second-color: #7eb775;
+    --font-size: 32px;
+    background-color: var(--primary-color);
+}
+.custom-props-2{
+    background-color: var(--default-bg-color);
+    border: thin solid var(--border-color);
+    padding: 1rem;
+}
+.custom-props-3{
+    font-size: var(--font-size);
+    border: thin solid var(--border-color);
+    
+}
+
+.title-props{
+    color: var(--primary-color, orange);
+    background-color: var(--default-bg-color);
+}
+/*CALC*/
+.ch-10{
+    --padding-size: 2ch;
+    --num-ch: 10ch;
+    background-color: var(--default-bg-color);
+    font-size: 2rem;
+    padding: var(--padding-size);
+    /*Es importante dejar espacio en blanco en su propiedad calc*/
+    width: calc(var(--num-ch) + var(--padding-size)*2);
+}
+
+/*MIN MAX*/
+.min-max{
+    background-color: var(--default-bg-color);
+    margin-top: 1rem;
+    /*los 250px sera como minimo la anchura y los 50vw representa que se vera
+    el bloque una mitad de la parte de los 100vw
+    como responsive va a respetar los 50vw si o si y no respetara 100px */
+    width: min(100px, 50vw);
+    /*aqui es como maximo va a respetar tener 200px dejando de lado los 25vh*/
+    height: max(200px, 25vh);
+}
+/*CLAMP*/
+h1{
+    /*como minimo tendra 2 rem y como maximo 3rem*/
+font-size: clamp(2rem,1rem + 3vw,3rem);
+}

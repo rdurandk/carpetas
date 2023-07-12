@@ -1,0 +1,414 @@
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  *,
+  *::after,
+  *::before {
+    box-sizing: inherit;
+  }
+
+  a[href="#top"] {
+    margin: 1rem;
+    display: block;
+    font-size: 2rem;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  p {
+    margin: 0;
+    
+  }
+
+  h2 {
+    margin-top: 50vh;
+    text-align: center;
+  }
+
+  img {
+    margin: auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .menu {
+    margin-bottom: 100vh;
+    font-size: 125%;
+  }
+
+  .menu li {
+    margin-bottom: 1rem;
+  }
+
+  .container {
+    margin: 0 auto;
+    width: 80%;
+    height: 80vh;
+    background-color: #222;
+    border: medium solid #000;
+  }
+
+  .item {
+    padding: 1rem;
+    font-size: 1.25rem;
+    background-color: #666;
+    border: medium solid #999;
+    
+  }
+  .grid-explicit{
+      display: grid; 
+      /*GRID de 3x3*/
+      grid-template-columns: 50% 100px 1fr;
+      grid-template-rows: 2rem 20vh 30%;
+      /*GRID de 5x4*/
+      grid-template-columns: repeat(5, 20%);
+      /*con el auto sera proporcional a lo que tiene el contenido
+      Si sobra espacio se reparte por igual entre las filas o columnas, pero a partir del tamaño calculado en función de sus contenidos que ya tengan.
+      es decir si tiene contenido se ajustara de acuerdo al contenido para que sea vea*/
+      grid-template-rows: repeat(4, auto);
+      /*con el 25 le estamos diciendo que se ajustara explicitamente */
+      grid-template-rows: repeat(4, 25%);
+      /*fr es diferente de auto este toma una fracción del espacio disponible para las columnas o filas. Todas tienen el mismo tamaño*/
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      /**/
+      grid-template-columns: 20% repeat(2, 30%) 20%;
+      grid-template-rows: repeat(5,auto);
+
+      /*Esto es un shorthand row * col
+       NOTA: SIEMPRE SE DEFINEN POR FILA * COLUMNA(row*col)*/
+       /*1fr es diferente de auto*/
+       grid-template: repeat(5,auto)/20% repeat(2,30%) 20%;
+
+      /*Estas nos daran espaciado en las celdas(bordes) pero estan obsoletas
+      grid-column-gap 
+      grid-row-gap
+      grid-gap
+      */
+      /**Estas no estan obsoletas*/
+      column-gap: 4rem;
+      row-gap: 2rem; 
+      /*gap es un shorthand de gap
+       row y col
+      */
+      gap: 1vh 1vw;
+      gap: 0;
+      
+
+  }
+  /*GRID LINE*/
+  .grid-explicit .item:nth-child(10){
+    color: cyan;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    /*grid-row y griw-column son shorthands*/
+    grid-row: 2 / 3;
+    grid-column: 3/ 4;
+    /*shorthands de las anteriores
+    grid-area: row-start/col-start/row-end/col-end*/
+
+    grid-area: 2 / 3 / 3 / 5;
+  }
+  .grid-explicit .item:nth-child(12){
+    color: cyan;
+    grid-row: span 2;
+    grid-column: span 3;
+  }
+  .grid-explicit .item:nth-child(15){
+    background-color: red;
+    color: cyan;
+
+    /*
+    grid-row: 1 / span 3;
+    grid-column: 1 / span 3;
+    */
+    
+    grid-row: 1/3;
+    grid-column: 1/3;
+       
+  }
+  /*GRID LINE NAME*/
+  .grid-line-names{
+      display: grid;
+      /*GRID 3X3*/
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr);
+      /*1fr es diferente de auto*/
+      grid-template-columns: [linea-c1] 1fr [linea-c2] 1fr [linea-c3] 1fr [linea-c4];
+      grid-template-rows: [linea-r1] auto [linea-r2] auto [linea-r3] auto [linea-r4];
+  }
+
+  .grid-line-names .item:nth-child(3){
+    color: cyan;
+    grid-row: linea-r3 / linea-r4;
+    grid-column: linea-c1 / linea-c4;
+    grid-area: linea-r3 / linea-c1 / linea-r4 / linea-c4;
+  }
+
+  /*Grid areas*/
+  .grid-areas{
+    display: grid;
+     /*GRID 2rX3c*/
+    grid-template: 100px repeat(2,1fr) 60px / 1fr 200px;
+    grid-template-areas: 
+    "header header"
+    "content sidebar"
+    "content ."
+    "footer footer";
+  }
+  .header{
+    grid-area: header;
+  }
+  .footer{
+    grid-area: footer;
+  }
+  .content{
+    grid-area: content;
+  }
+  .sidebar{
+    grid-area: sidebar;;
+  }
+  /*GRID IMPLICITA*/
+  /*IMPLICIDAD SON AQUELLAS CELDAS QUE NO TOMAN EN CUENTA
+   CUANDO DEFINIMOS LAS FILAS Y COLUMNAS*/
+  .grid-implicit{
+    /*Grid 4c x 3r*/
+    width: 40%;
+    display: grid;
+    display: inline-grid;/*recordemos que esto hara que sea un tipo linea y no bloque*/
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 200px);
+  }
+
+    /*GRID FLOW*/
+    .grid-flow {
+      display: grid;
+      /*Grid de 5c x 3r*/
+      grid-template-columns: repeat(5,1fr);
+      grid-template-rows: repeat(3,150px); 
+      /*grid-auto-(row o col) le defineremos para que ajuste a las grid implicitas
+      el flujo por defecto es row (grid-auto-flow: row)*/
+      grid-auto-flow: row;
+      grid-auto-rows: 100px;
+      grid-auto-flow: column;
+      grid-auto-columns: 50px;
+      
+    }
+    /*GRID DENSE*/
+    .grid-flow-dense{
+      display: grid;
+      /*Grid de 5c x 4r*/
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(4, 200px);
+      /*esto aprovechara nuestros espacio vacios generados por la implicidad
+      si yo defino un grid-auto-flow: column respetara la fila que tiene nuestra grid
+      y la implicidad ira en la columna. Nota: esto es vicevera con el flujo row*/
+      grid-auto-flow: row dense;
+      grid-auto-flow: column dense;
+    }
+    
+    /*
+    .grid-flow-dense .item:nth-child(9){
+      color: cyan;
+      grid-row: span 3;
+      grid-column: span 3;
+      
+    }
+    */
+    .grid-flow-dense .item:nth-child(11){
+      color: cyan;
+      grid-row: span 3;
+      grid-column: span 3;
+      
+    }
+
+    /*Grid Item en Capas*/
+    .grid-layers{
+      display: grid;
+      /*GRID 4C * 4R*/
+      grid-template-columns: repeat(4,1fr);
+      grid-template-rows: repeat(4,1fr);
+
+    }
+    .grid-layers .item:nth-child(1){
+      background-color: #8cba5f;
+      grid-column: 1 / 3;
+      grid-row: 1/3;
+    }
+    .grid-layers .item:nth-child(2){
+      background-color: #6d75ab;
+      grid-column: 3 / 5;
+      grid-row: 1/3;
+    }
+    .grid-layers .item:nth-child(3){
+      background-color: #4b692e;
+      grid-column: 1 / 3;
+      grid-row: 3/5;
+    }
+    .grid-layers .item:nth-child(4){
+      background-color: #dfa944;
+      grid-column: 3 / 5;
+      grid-row: 3/5;
+    }
+    .grid-layers .item:nth-child(5){
+      background-color: #a057cc;
+      opacity: .75;
+      grid-column: 2 / 4;
+      grid-row: 2/4;
+    }
+
+    /*GRID ORDERS*/
+
+    .grid-order{
+      display: grid;
+      /*GRID 3C * 2R*/
+      grid-template: repeat(2,1fr)/ repeat(3,1fr);
+      grid-auto-flow: column;
+    }
+    .grid-order .item:first-child{
+      /**Valor por default 0*/
+      order: 1;
+    }
+    .grid-order .item:nth-child(2){
+      /*Valor positivos y negativos*/
+      order: 2
+    }
+    .grid-order .item:nth-child(5){
+      
+      order: -1
+    }
+
+
+    /*Alineamiento de Grid*/
+    .grid-align{
+      display: grid;
+      /*GRID 3C * 2R*/
+      grid-template: repeat(2,200px)/ repeat(3,200px);
+      grid-auto-flow: row;
+      /*valor por defecto stretch (las celdas se estiran)
+      justifiy items: alineara la celda*/
+      justify-items: stretch;
+      justify-items: center;
+      align-items: stretch;
+      align-items: center;
+
+    }
+
+    .grid-align .item:nth-child(4){
+      /*self solo se aplica a los hijos(celdas)*/
+      justify-self: start;
+      align-self: start;
+      
+    }
+
+
+    /*GRID TRACKS*/
+    .grid-align-tracks{
+      display: grid;
+      /*GRID 3C * 2R*/
+      grid-template: repeat(2,200px)/ repeat(3,200px);
+      grid-auto-flow: row;
+      /*justifiy content: alineara los tracks(row y col) en el eje horizontal(x)*/
+      justify-content: center;
+      justify-content: space-between;
+      justify-content: space-around;
+      justify-content: space-evenly;
+      /*align-content alineara los tracks en el eje y*/
+      align-content: start;
+      align-content: end;
+      align-content: center;
+      align-content: space-evenly;
+    }
+
+    /*Tamaños Maximos y Minimos*/
+    .grid-min-max{
+      display: grid;
+      /*Grid de 4c x ?r*/
+      grid-template-columns: repeat(4,1fr);
+      /*el limite llegara a 50px*/
+      grid-template-columns: repeat(4,minmax(50px, 200px));
+      /*min content: hara que se limite de acuerdo al valor de su contenido*/
+      grid-template-columns: repeat(4,minmax(min-content, 200px));
+      /*como minimo tendra 100px y como maximo tendra el tamaño minimo de su contenido osea 100*/
+      grid-template-columns: repeat(4,minmax(100px, min-content));
+      /*como minimo tendra 100px y como maximo tendra el tamaño maximo de su contenido*/
+      grid-template-columns: repeat(4,minmax(100px, max-content));
+      grid-template-columns: repeat(4,minmax(max-content, 200px));
+      grid-template-columns: repeat(4,minmax(min-content, max-content));
+    }
+
+    /*GRID PATRONES REPETIDOS*/
+    .grid-repeat{
+      display: grid;
+      /*Grid de 4cx?(2)r*/
+      /*Nota: el valor repeat solo se aplica en los grid-template*/
+      grid-template-columns: repeat(1,10% 20% 30% 40%);
+      grid-template-rows: repeat(2, 100px 200px);
+      grid-auto-flow: row;
+      /*esto hara que la implicidad llege a 150px (como altura)*/
+      grid-auto-rows: 150px;
+    }
+
+    /*GRID DINAMICA*/
+    .grid-dynamics{
+      display: grid;
+      /*Grid de 4cx?r*/
+      grid-template-columns: repeat(4, 100px);
+      /*auto-fill: rellena la grid con tracks generados dinamicamente*/
+      grid-template-columns: repeat(auto-fill, 100px);
+      /*auto-fit: Ajusta lo necesario con los tracks existentes
+      NOTA: inspeccionar para entender*/
+      grid-template-columns: repeat(auto-fit, 100px);
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      
+    }
+
+    /*GRID RESPONSIVE*/
+
+    .grid-responsive{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+    }
+
+    /*GRUD ANIDADOS*/
+    .grid-nested{
+      display: grid;
+      /*Grid de 3cx?r*/
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    /*Grid Anidados*/
+    .sub-item{
+      padding: 1rem;
+      border: medium solid #ccc;
+      background-color: #ddd;
+    }
+    /*Grid Subgrid*/
+    .grid{
+      display: grid;
+      /*Grid de 3cx2r*/
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+    }
+    .subgrid{
+      /*subgrid: Para que la caracteristica de subgrid funciones es necesario
+      hacer los siguientes
+      */
+      grid-column: span 3;
+      grid-row: 1/3;
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-template-rows: subgrid;
+    }
+
+
+    

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Canciones</title>
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .loader {
+            display: none;
+            margin: auto;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .cancion blockquote {
+            white-space: pre-wrap;
+        }
+
+        @media screen and (min-width: 800px) {
+            main {
+                flex-direction: row;
+            }
+
+            main>* {
+                padding: 1rem;
+                flex-basis: 100%;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Buscador de Canciones</h1>
+    <article>
+        <form id="song-search">
+            <input type="text" name="artista" placeholder="Nombre del Interprete" required>
+            <br>
+            <input type="text" name="cancion" placeholder="Nombre de la Cancion" required>
+            <br>
+            <input type="submit" value="Enviar">
+        </form>
+    </article>
+    <img class="loader" src="../assets/ball-triangle.svg" alt="">
+    <main>
+        <article class="artista">
+
+        </article>
+        <article class="cancion">
+
+        </article>
+    </main>
+
+    <script>
+        const d = document,
+            $loader = d.querySelector(".loader"),
+            $form = d.getElementById("song-search"),
+            $artista = d.querySelector(".artista"),
+            $cancion = d.querySelector(".cancion");
+
+
+        d.addEventListener("submit", async e => {
+            if (e.target === $form) {
+                e.preventDefault()
+                try {
+                    $loader.style.display = "block"
+                    let busArtista = e.target.artista.value.toLowerCase();
+                    let busCancion = e.target.cancion.value.toLowerCase();
+                    let apiArtista = `https://www.theaudiodb.com/api/v1/json/2/search.php?s=${busArtista}`;
+                    let apiCancion = `https://api.lyrics.ovh/v1/${busArtista}/${busCancion}`;
+                    let fetchArtista = fetch(apiArtista);
+                    let fetchCancion = fetch(apiCancion);
+                    [artistFetch, cancionFetch] = await Promise.all([fetchArtista, fetchCancion]);
+                    artistData = await artistFetch.json();
+                    cancionData = await cancionFetch.json();
+                    console.log(artistFetch, artistData)
+                    console.log(cancionFetch, cancionData)
+
+                    if (artistData.artists === null) {
+                        $artista.innerHTML = `<h2>No se encontro el artista:<mark>${busArtista}</mark></h2>`
+                    } else {
+                        $artista.innerHTML = `
+                        <h2>${artistData.artists[0].strArtist}</h2>
+                        <img src="${artistData.artists[0].strArtistThumb}" alt="${artistData.artists[0].strArtist}">
+                        <p>${artistData.artists[0].intBornYear}</p>
+                        <p>${artistData.artists[0].strCountry}</p>
+                        <p>${artistData.artists[0].strGenre} - ${artistData.artists[0].strStyle}</p>
+                        <a href="http://${artistData.artists[0].strWebsite}" target="_blank">Sitio Web</a>
+                        <p>${artistData.artists[0].strBiographyEN}</p>
+                        `
+
+                        $loader.style.display = "none"
+                    }
+                    if (cancionData.error) {
+                        $cancionTemplate = `<h2>No existe la cancion <mark>${busCancion}</mark></h2>`
+                    } else {
+                        $cancion.innerHTML = `
+                        <h2>${busCancion.toUpperCase()}</h2>
+                        <blockquote>${cancionData.lyrics}</blockquote>
+                        `
+                    }
+                } catch (error) {
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
